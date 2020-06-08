@@ -24,8 +24,15 @@ public class RecordController {
     @Autowired
     private RecordService recordService;
 
+    /**
+     *@description: 记账
+     *@params: validator
+     *@return: CreatedVO
+     *@createTime: 2020/6/8 22:16
+     *@author: edit by bin
+     */
     @PostMapping("")
-    public CreatedVO createBook(@RequestBody @Validated CreateOrUpdateRecordDTO validator) {
+    public CreatedVO createRecord(@RequestBody @Validated CreateOrUpdateRecordDTO validator) {
         recordService.createRecord(validator);
         return new CreatedVO(16);
     }
