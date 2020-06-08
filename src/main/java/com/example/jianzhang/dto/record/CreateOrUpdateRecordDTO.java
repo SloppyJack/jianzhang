@@ -1,5 +1,6 @@
 package com.example.jianzhang.dto.record;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

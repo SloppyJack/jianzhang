@@ -7,6 +7,8 @@ import com.example.jianzhang.service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * @author: create by bin
  * @version: v1.0
@@ -25,6 +27,7 @@ public class RecordServiceImpl implements RecordService {
         recordDO.setSpendCategory(validator.getSpendCategory());
         recordDO.setAmount(validator.getAmount());
         recordDO.setOccurTime(validator.getOccurTime());
+        recordDO.setCreateTime(new Date());
         return recordMapper.insert(recordDO) > 0;
     }
 }

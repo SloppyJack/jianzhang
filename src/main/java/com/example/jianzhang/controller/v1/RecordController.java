@@ -27,6 +27,6 @@ public class RecordController {
     @PostMapping("")
     public CreatedVO createBook(@RequestBody @Validated CreateOrUpdateRecordDTO validator) {
         recordService.createRecord(validator);
-        return new CreatedVO(12);
+        return new CreatedVO(16);
     }
 }
