@@ -23,7 +23,6 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public boolean createRecord(CreateOrUpdateRecordDTO validator) {
         RecordDO recordDO = new RecordDO();
-        recordDO.setType(validator.getType());
         recordDO.setSpendCategory(validator.getSpendCategory());
         recordDO.setAmount(validator.getAmount());
         recordDO.setOccurTime(validator.getOccurTime());

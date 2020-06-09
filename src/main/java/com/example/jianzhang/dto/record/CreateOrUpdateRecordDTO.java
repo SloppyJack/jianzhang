@@ -18,9 +18,6 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class CreateOrUpdateRecordDTO {
-    @NotNull(message = "{record.type.not-empty}")
-    private Integer type;
-
     @NotNull(message = "{record.spendCategory.not-empty}")
     private Integer spendCategory;
 

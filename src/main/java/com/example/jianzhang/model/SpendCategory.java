@@ -13,19 +13,24 @@ import java.util.Date;
  * @author: create by bin
  * @version: v1.0
  * @description: com.example.jianzhang.model
- * @date: 2020/6/7 21:00
+ * @date: 2020/6/9 20:26
  **/
-@TableName("tb_record_detail")
+@TableName("tb_record_category")
 @Data
-public class RecordDO {
+public class SpendCategory {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    private Integer spendCategory;
+    private String code;
 
-    private Double amount;
+    private String name;
 
-    private Date occurTime;
+    // 外键，与tb_record_type表的主键关联
+    private Integer recordType;
+
+    private Integer orderNo;
+
+    private String remarks;
 
     @JsonIgnore
     private Date createTime;
