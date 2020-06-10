@@ -15,9 +15,9 @@ import java.util.Date;
  * @description: com.example.jianzhang.model
  * @date: 2020/6/9 20:26
  **/
-@TableName("tb_record_category")
+@TableName("tb_spend_category")
 @Data
-public class SpendCategory {
+public class SpendCategoryDO {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 

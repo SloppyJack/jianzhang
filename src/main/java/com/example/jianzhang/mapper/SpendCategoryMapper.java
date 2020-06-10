@@ -2,6 +2,8 @@ package com.example.jianzhang.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.jianzhang.model.RecordDO;
+import com.example.jianzhang.model.SpendCategoryDO;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author: create by bin
@@ -9,5 +11,6 @@ import com.example.jianzhang.model.RecordDO;
  * @description: com.example.jianzhang.mapper
  * @date: 2020/6/9 20:29
  **/
-public interface SpendCategoryMapper extends BaseMapper<RecordDO> {
+@Repository
+public interface SpendCategoryMapper extends BaseMapper<SpendCategoryDO> {
 }
