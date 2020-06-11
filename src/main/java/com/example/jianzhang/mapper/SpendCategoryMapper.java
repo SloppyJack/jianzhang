@@ -3,7 +3,10 @@ package com.example.jianzhang.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.jianzhang.model.RecordDO;
 import com.example.jianzhang.model.SpendCategoryDO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author: create by bin
@@ -13,4 +16,5 @@ import org.springframework.stereotype.Repository;
  **/
 @Repository
 public interface SpendCategoryMapper extends BaseMapper<SpendCategoryDO> {
+    List<SpendCategoryDO> selectByRecordTypeId(@Param("recordTypeId")int recordTypeId);
 }

@@ -26,7 +26,7 @@ public class SpendCategoryDO {
     private String name;
 
     // 外键，与tb_record_type表的主键关联
-    private Integer recordType;
+    private RecordTypeDO recordType;
 
     private Integer orderNo;
 

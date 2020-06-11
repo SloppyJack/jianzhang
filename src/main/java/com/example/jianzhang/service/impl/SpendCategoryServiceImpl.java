@@ -23,4 +23,9 @@ public class SpendCategoryServiceImpl implements SpendCategoryService {
     public List<SpendCategoryDO> findAll() {
         return spendCategoryMapper.selectList(null);
     }
+
+    @Override
+    public List<SpendCategoryDO> getByRecordTypeId(int recordTypeId) {
+        return spendCategoryMapper.selectByRecordTypeId(recordTypeId);
+    }
 }

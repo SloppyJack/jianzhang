@@ -12,4 +12,6 @@ import java.util.List;
  **/
 public interface SpendCategoryService {
     List<SpendCategoryDO> findAll();
+
+    List<SpendCategoryDO> getByRecordTypeId(int recordTypeId);
 }

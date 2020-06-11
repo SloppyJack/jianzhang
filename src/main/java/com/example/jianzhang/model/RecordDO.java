@@ -21,7 +21,9 @@ public class RecordDO {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    private Integer spendCategory;
+    private SpendCategoryDO spendCategory;
+
+    private UserDO user;
 
     private Double amount;
 

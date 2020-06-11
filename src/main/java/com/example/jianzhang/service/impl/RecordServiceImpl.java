@@ -1,9 +1,13 @@
 package com.example.jianzhang.service.impl;
 
+import com.example.jianzhang.common.LocalUser;
 import com.example.jianzhang.dto.record.CreateOrUpdateRecordDTO;
 import com.example.jianzhang.mapper.RecordMapper;
 import com.example.jianzhang.model.RecordDO;
+import com.example.jianzhang.model.SpendCategoryDO;
+import com.example.jianzhang.model.UserDO;
 import com.example.jianzhang.service.RecordService;
+import io.github.talelin.autoconfigure.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +27,16 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public boolean createRecord(CreateOrUpdateRecordDTO validator) {
         RecordDO recordDO = new RecordDO();
-        recordDO.setSpendCategory(validator.getSpendCategory());
+        // 设置花费的类别
+        SpendCategoryDO spendCategoryDO = new SpendCategoryDO();
+        spendCategoryDO.setId(validator.getSpendCategory());
+        // 设置记账人
+        UserDO userDO = LocalUser.getLocalUser();
+        if (userDO == null) {
+            throw new NotFoundException("user not found",10020);
+        }
+        recordDO.setUser(userDO);
+        recordDO.setSpendCategory(spendCategoryDO);
         recordDO.setAmount(validator.getAmount());
         recordDO.setOccurTime(validator.getOccurTime());
         recordDO.setCreateTime(new Date());

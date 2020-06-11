@@ -19,7 +19,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class CreateOrUpdateRecordDTO {
     @NotNull(message = "{record.spendCategory.not-empty}")
-    private Integer spendCategory;
+    private Long spendCategory;
 
     @NotNull(message = "{record.amount.not-empty}")
     private Double amount;

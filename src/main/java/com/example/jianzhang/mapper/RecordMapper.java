@@ -12,4 +12,6 @@ import org.springframework.stereotype.Repository;
  **/
 @Repository
 public interface RecordMapper extends BaseMapper<RecordDO> {
+    @Override
+    int insert(RecordDO entity);
 }

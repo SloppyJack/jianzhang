@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jianzhang.mapper.SpendCategoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.jianzhang.model.SpendCategoryDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="order_no" jdbcType="INTEGER" property="orderNo"/>
+        <result column="remarks" jdbcType="VARCHAR" property="remarks"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime"/>
+        <association property="recordType" javaType="com.example.jianzhang.model.RecordTypeDO">
+            <id column="id" property="id"/>
+            <result column="code" property="code"/>
+            <result column="name" property="name"/>
+        </association>
+    </resultMap>
+
+    <select id="selectByRecordTypeId" resultMap="BaseResultMap">
+        SELECT *
+        FROM tb_spend_category a,tb_record_type b
+        WHERE
+        a.record_type_id = b.id
+        AND
+        a.record_type_id = #{recordTypeId}
+        AND
+        b.delete_time IS NULL
+    </select>
+
+</mapper>
