@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author: create by bin
@@ -32,14 +33,17 @@ public class RecordServiceImpl implements RecordService {
         spendCategoryDO.setId(validator.getSpendCategory());
         // 设置记账人
         UserDO userDO = LocalUser.getLocalUser();
-        if (userDO == null) {
-            throw new NotFoundException("user not found",10020);
-        }
         recordDO.setUser(userDO);
         recordDO.setSpendCategory(spendCategoryDO);
         recordDO.setAmount(validator.getAmount());
         recordDO.setOccurTime(validator.getOccurTime());
         recordDO.setCreateTime(new Date());
         return recordMapper.insert(recordDO) > 0;
+    }
+
+    @Override
+    public List<RecordDO> getRecordsByLocalUser() {
+        UserDO userDO = LocalUser.getLocalUser();
+        return recordMapper.getRecordsByUserId(userDO.getId());
     }
 }

@@ -27,6 +27,8 @@ public class RecordDO {
 
     private Double amount;
 
+    private String remarks;
+
     private Date occurTime;
 
     @JsonIgnore
