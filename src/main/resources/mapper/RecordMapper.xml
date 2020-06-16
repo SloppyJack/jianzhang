@@ -35,4 +35,22 @@
         a.spend_category_id = b.id and a.user_id = c.id
         and user_id = #{id}
     </select>
+
+    <select id="getRecordById" parameterType="Long" resultMap="BaseResultMap">
+        select *
+        from
+            tb_record_detail a,tb_spend_category b,lin_user c
+        where
+        a.spend_category_id = b.id and a.user_id = c.id
+        and a.id = #{id}
+    </select>
+
+    <update id="updateById" parameterType="com.example.jianzhang.model.RecordDO">
+        update tb_record_detail
+        set (spend_category_id = #{spendCategory.id},
+            user_id = #{user.id},
+            amount = #{amount},
+            occur_time = #{occurTime},
+            update_time = #{updateTime}
+    </update>
 </mapper>

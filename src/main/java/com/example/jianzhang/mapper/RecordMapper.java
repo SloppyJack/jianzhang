@@ -25,5 +25,16 @@ public interface RecordMapper extends BaseMapper<RecordDO> {
      *@createTime: 2020/6/12 23:32
      *@author: edit by bin
      */
-    List<RecordDO> getRecordsByUserId(@Param("id") Long id);
+    List<RecordDO> selectByUserId(@Param("id") Long id);
+
+    /**
+     *@description: 通过id获取某一行record
+     *@params:
+     *@return:
+     *@createTime: 2020/6/16 21:45
+     *@author: edit by bin
+     */
+    RecordDO selectById(@Param("id") Long id);
+
+    int updateById(RecordDO recordDO);
 }

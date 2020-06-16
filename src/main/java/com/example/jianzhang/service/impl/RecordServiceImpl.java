@@ -44,6 +44,26 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public List<RecordDO> getRecordsByLocalUser() {
         UserDO userDO = LocalUser.getLocalUser();
-        return recordMapper.getRecordsByUserId(userDO.getId());
+        return recordMapper.selectByUserId(userDO.getId());
+    }
+
+    @Override
+    public RecordDO getById(Long id) {
+        return recordMapper.selectById(id);
+    }
+
+    @Override
+    public boolean updateRecord(RecordDO recordDO, CreateOrUpdateRecordDTO validator) {
+        if (validator.getSpendCategory() != null) {
+            SpendCategoryDO spendCategoryDO = new SpendCategoryDO();
+            spendCategoryDO.setId(validator.getSpendCategory());
+            recordDO.setSpendCategory(spendCategoryDO);
+        }
+        if (validator.getOccurTime() != null) {
+            recordDO.setOccurTime(validator.getOccurTime());
+        }
+        recordDO.setAmount(validator.getAmount());
+        recordDO.setUpdateTime(new Date());
+        return recordMapper.updateById(recordDO) > 0;
     }
 }

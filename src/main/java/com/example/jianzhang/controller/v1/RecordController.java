@@ -5,12 +5,15 @@ import com.example.jianzhang.dto.record.CreateOrUpdateRecordDTO;
 import com.example.jianzhang.model.RecordDO;
 import com.example.jianzhang.service.RecordService;
 import com.example.jianzhang.vo.CreatedVO;
+import com.example.jianzhang.vo.UpdatedVO;
+import io.github.talelin.autoconfigure.exception.NotFoundException;
 import io.github.talelin.core.annotation.GroupMeta;
 import io.github.talelin.core.annotation.LoginRequired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 /**
@@ -44,5 +47,15 @@ public class RecordController {
     @LoginRequired
     public List<RecordDO> getRecords() {
         return recordService.getRecordsByLocalUser();
+    }
+
+    @PutMapping("/{id}")
+    public UpdatedVO updateRecord(@PathVariable("id") @Positive(message = "{id}") Long id,CreateOrUpdateRecordDTO validator) {
+        RecordDO recordDO = recordService.getById(id);
+        if (recordDO == null) {
+            throw new NotFoundException("record not found", 10022);
+        }
+        recordService.updateRecord(recordDO, validator);
+        return new UpdatedVO(13);
     }
 }
