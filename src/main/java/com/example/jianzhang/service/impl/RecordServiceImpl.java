@@ -59,10 +59,9 @@ public class RecordServiceImpl implements RecordService {
             spendCategoryDO.setId(validator.getSpendCategory());
             recordDO.setSpendCategory(spendCategoryDO);
         }
-        if (validator.getOccurTime() != null) {
-            recordDO.setOccurTime(validator.getOccurTime());
-        }
+        recordDO.setOccurTime(validator.getOccurTime());
         recordDO.setAmount(validator.getAmount());
+        recordDO.setRemarks(validator.getRemarks());
         recordDO.setUpdateTime(new Date());
         return recordMapper.updateById(recordDO) > 0;
     }

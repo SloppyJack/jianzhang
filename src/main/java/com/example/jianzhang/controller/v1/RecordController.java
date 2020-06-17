@@ -50,7 +50,7 @@ public class RecordController {
     }
 
     @PutMapping("/{id}")
-    public UpdatedVO updateRecord(@PathVariable("id") @Positive(message = "{id}") Long id,CreateOrUpdateRecordDTO validator) {
+    public UpdatedVO updateRecord(@PathVariable("id") @Positive(message = "{id}") Long id, @RequestBody @Validated CreateOrUpdateRecordDTO validator) {
         RecordDO recordDO = recordService.getById(id);
         if (recordDO == null) {
             throw new NotFoundException("record not found", 10022);

@@ -11,12 +11,12 @@
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime"/>
         <association property="spendCategory" javaType="com.example.jianzhang.model.SpendCategoryDO">
-            <id column="id" property="id"/>
-            <result column="code" property="code"/>
-            <result column="name" property="name"/>
+            <id column="sc_id" property="id"/>
+            <result column="sc_code" property="code"/>
+            <result column="sc_name" property="name"/>
         </association>
         <association property="user" javaType="com.example.jianzhang.model.UserDO">
-            <id column="id" property="id"/>
+            <id column="uid" property="id"/>
             <result column="username" property="username"/>
         </association>
     </resultMap>
@@ -27,8 +27,10 @@
         (#{spendCategory.id},#{user.id},#{amount},#{occurTime},#{createTime},#{updateTime},#{deleteTime})
     </insert>
 
-    <select id="getRecordsByUserId" parameterType="Long" resultMap="BaseResultMap">
-        select *
+    <select id="selectByUserId" parameterType="Long" resultMap="BaseResultMap">
+        select a.*,
+            b.id sc_id,b.name sc_name,b.code sc_code,
+            c.id uid,c.username
         from
             tb_record_detail a,tb_spend_category b,lin_user c
         where
@@ -36,8 +38,10 @@
         and user_id = #{id}
     </select>
 
-    <select id="getRecordById" parameterType="Long" resultMap="BaseResultMap">
-        select *
+    <select id="selectById" parameterType="Long" resultMap="BaseResultMap">
+        select a.*,
+            b.id sc_id,b.name sc_name,b.code sc_code,
+            c.id uid,c.username
         from
             tb_record_detail a,tb_spend_category b,lin_user c
         where
@@ -47,10 +51,26 @@
 
     <update id="updateById" parameterType="com.example.jianzhang.model.RecordDO">
         update tb_record_detail
-        set (spend_category_id = #{spendCategory.id},
-            user_id = #{user.id},
-            amount = #{amount},
-            occur_time = #{occurTime},
-            update_time = #{updateTime}
+        <set>
+            <if test="spendCategory.id != null">
+                spend_category_id = #{spendCategory.id},
+            </if>
+            <if test="user.id != null">
+                user_id = #{user.id},
+            </if>
+            <if test="amount != null">
+                amount = #{amount},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks},
+            </if>
+            <if test="occurTime != null">
+                occur_time = #{occurTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime}
+            </if>
+        </set>
+        where id = #{id}
     </update>
 </mapper>
