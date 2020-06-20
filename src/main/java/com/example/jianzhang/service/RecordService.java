@@ -40,4 +40,13 @@ public interface RecordService {
      *@author: edit by bin
      */
     boolean updateRecord(RecordDO recordDO,CreateOrUpdateRecordDTO validator);
+
+    /**
+     *@description: 通过Id删除某条记账记录
+     *@params:
+     *@return:
+     *@createTime: 2020/6/20 19:07
+     *@author: edit by bin
+     */
+    boolean deleteById(Long id);
 }

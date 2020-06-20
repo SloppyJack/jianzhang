@@ -36,6 +36,7 @@
         where
         a.spend_category_id = b.id and a.user_id = c.id
         and user_id = #{id}
+        and a.delete_time is null
     </select>
 
     <select id="selectById" parameterType="Long" resultMap="BaseResultMap">

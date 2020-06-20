@@ -65,4 +65,9 @@ public class RecordServiceImpl implements RecordService {
         recordDO.setUpdateTime(new Date());
         return recordMapper.updateById(recordDO) > 0;
     }
+
+    @Override
+    public boolean deleteById(Long id) {
+        return recordMapper.deleteById(id) > 0;
+    }
 }

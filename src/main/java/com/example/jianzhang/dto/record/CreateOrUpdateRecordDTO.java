@@ -1,6 +1,7 @@
 package com.example.jianzhang.dto.record;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -13,6 +14,7 @@ import java.util.Date;
  * @date: 2020/6/7 20:28
  **/
 @Data
+@NoArgsConstructor
 public class CreateOrUpdateRecordDTO {
     @NotNull(message = "{record.spendCategory.not-empty}")
     private Long spendCategory;
